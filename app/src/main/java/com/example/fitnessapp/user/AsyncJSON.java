@@ -156,7 +156,6 @@ public class AsyncJSON extends AsyncTask<String, Integer, User>{
             JSONArray body = table.getJSONArray("body");
 
             for (int z = 0; z < body.length() ; z++) {
-                System.out.println(z);
                 JSONArray jsonArrayBody = body.getJSONArray(z);
 
                 JSONObject dateProcessJson = jsonArrayBody.getJSONObject(0);

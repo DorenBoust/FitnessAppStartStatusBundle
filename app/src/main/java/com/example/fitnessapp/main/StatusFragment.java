@@ -24,19 +24,13 @@ public class StatusFragment extends Fragment {
 
     private StatusViewModel mViewModel;
     private User user;
-    private List<Double> weightList = new ArrayList<>();
-
-    public static StatusFragment newInstance() {
-        return new StatusFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_fragment, container, false);
 
-
-        User user = (User) getArguments().getSerializable(KeysUserFragment.USER_DATA_TO_FRAGMENT);
+        user = (User) getArguments().getSerializable(KeysUserFragment.USER_DATA_TO_FRAGMENT);
 
         System.out.println("Live Data Status " + user);
         return v;

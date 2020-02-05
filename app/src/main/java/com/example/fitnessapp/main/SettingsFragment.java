@@ -17,11 +17,14 @@ import android.widget.Button;
 import com.example.fitnessapp.LogActivity;
 import com.example.fitnessapp.MainActivity;
 import com.example.fitnessapp.R;
+import com.example.fitnessapp.keys.KeysUserFragment;
+import com.example.fitnessapp.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsFragment extends Fragment {
 
     private SettingsViewModel mViewModel;
+    private User user;
     private Button btnLogout;
 
     public static SettingsFragment newInstance() {
@@ -32,6 +35,9 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.settings_fragment, container, false);
+
+        user = (User) getArguments().getSerializable(KeysUserFragment.USER_DATA_TO_FRAGMENT);
+        System.out.println("Setting" + user);
 
         btnLogout = v.findViewById(R.id.settingFregment_btn_logout);
 

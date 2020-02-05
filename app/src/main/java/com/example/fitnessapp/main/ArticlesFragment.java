@@ -13,10 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fitnessapp.R;
+import com.example.fitnessapp.keys.KeysUserFragment;
+import com.example.fitnessapp.user.User;
 
 public class ArticlesFragment extends Fragment {
 
     private ArticlesViewModel mViewModel;
+    private User user;
 
     public static ArticlesFragment newInstance() {
         return new ArticlesFragment();
@@ -25,7 +28,11 @@ public class ArticlesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.articles_fragment, container, false);
+        View v =  inflater.inflate(R.layout.articles_fragment, container, false);
+
+        user = (User) getArguments().getSerializable(KeysUserFragment.USER_DATA_TO_FRAGMENT);
+        System.out.println("Articals" + user);
+        return v;
     }
 
     @Override

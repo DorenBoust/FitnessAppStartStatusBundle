@@ -102,18 +102,15 @@ public class MainActivity extends AppCompatActivity {
         userJsonLiveData.observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                System.out.println("" + user);
-
+                userObject = user;
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(KeysUserFragment.USER_DATA_TO_FRAGMENT, user);
+                bundle.putSerializable(KeysUserFragment.USER_DATA_TO_FRAGMENT, userObject);
                 StatusFragment statusFragment = new StatusFragment();
                 statusFragment.setArguments(bundle);
 
-                userJsonDone.setValue("DONE");
-
                 menuBar.setAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.faidin));
                 menuBar.setVisibility(View.VISIBLE);
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.faidin,R.anim.faidout).replace(R.id.mainFragment, new StatusFragment()).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.faidin,R.anim.faidout).replace(R.id.mainFragment, statusFragment).commit();
             }
         });
 
@@ -271,7 +268,11 @@ public class MainActivity extends AppCompatActivity {
                 faidoutIconLine(iconLines.get(i));
             }else {
                 faidinIconLine(iconLines.get(i));
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.faidin,R.anim.faidout,R.anim.faidin,R.anim.faidout).replace(R.id.mainFragment, fragments.get(i)).commit();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KeysUserFragment.USER_DATA_TO_FRAGMENT, userObject);
+                Fragment fragment = fragments.get(i);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.faidin,R.anim.faidout,R.anim.faidin,R.anim.faidout).replace(R.id.mainFragment, fragment).commit();
 
             }
         }
